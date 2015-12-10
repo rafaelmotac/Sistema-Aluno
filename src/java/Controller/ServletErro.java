@@ -1,6 +1,10 @@
-package controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller;
 
-import dao.AlunoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -8,37 +12,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author RMC
+ */
+public class ServletErro extends HttpServlet {
 
-public class AtualizarController extends HttpServlet {
-
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            int mat = Integer.parseInt(request.getParameter("matricula"));
-            String nome = request.getParameter("nome");
-            double av1 = Double.parseDouble(request.getParameter("av1"));
-            double av2 = Double.parseDouble(request.getParameter("av2"));
-            char n[] = nome.toCharArray();
-            if (av1 > 10 || av2 > 10) {
-                response.sendRedirect("/sistemaalunos/erro.html");
-            } else if (av1 < 0 || av2 < 0) {
-                response.sendRedirect("/sistemaalunos/erro.html");
-            } else if(nome.length() == 0 || n[0]== ' '){
-                response.sendRedirect("/sistemaalunos/erro.html");           
-            }else{
-                AlunoDAO aluno = new AlunoDAO();
-                aluno.updateAluno(mat, nome, av1, av2);
-                response.sendRedirect("/sistemaalunos/confirmacao.html");
-            }
-
-        } catch (Exception e) {
-            response.sendRedirect("/sistemaalunos/erro.html");
-            e.printStackTrace();
-        } finally {
-            out.close();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletErro</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletErro at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -54,7 +56,7 @@ public class AtualizarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("/sistemaalunos/ServletErro");
+        processRequest(request,response);
     }
 
     /**

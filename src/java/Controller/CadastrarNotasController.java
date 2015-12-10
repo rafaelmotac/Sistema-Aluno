@@ -1,17 +1,23 @@
-package controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller;
 
+import DAO.AlunoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Aluno;
-import dao.AlunoDAO;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 
-public class ListarController extends HttpServlet {
+/**
+ *
+ * @author RMC
+ */
+public class CadastrarNotasController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,17 +33,25 @@ public class ListarController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            AlunoDAO dao = new AlunoDAO();
-            ArrayList<Aluno> alunos = new ArrayList();
-            alunos = dao.listarAluno();
-            request.setAttribute("alunos", alunos);
-            RequestDispatcher rd = request.getRequestDispatcher("/ListarView");
-            rd.forward(request, response);
-        } catch (Exception e) {
+            int mat = Integer.parseInt(request.getParameter("matricula"));
+            double av1 = Double.parseDouble(request.getParameter("av1"));
+            double av2 = Double.parseDouble(request.getParameter("av2"));
+            AlunoDAO aluno = new AlunoDAO();
+            aluno.updateAluno(mat, av1, av2);
+            //response.sendRedirect("/sistemaalunos/confirmacao.html");
+            enviarTexto(response , "OK");
+        }catch(Exception e){
             e.printStackTrace();
-        } finally {
+        }finally{
             out.close();
         }
+    }
+    
+    private void enviarTexto(HttpServletResponse response, String texto) throws IOException {
+        PrintWriter out = response.getWriter();
+        out.print(texto);
+        out.close();
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +66,7 @@ public class ListarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.sendRedirect("/sistemaalunos/ServletErro");
     }
 
     /**
