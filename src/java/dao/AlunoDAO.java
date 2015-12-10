@@ -1,11 +1,11 @@
-package DAO;
+package dao;
 
-import ConnectionFactory.ConnectionFactory;
+import connectionFactory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import ConnectionFactory.ConnectionFactory;
+import connectionFactory.ConnectionFactory;
 
 public class AlunoDAO {
     public void cadastrarAluno(String nome){
@@ -25,14 +25,14 @@ public class AlunoDAO {
     }   
     
     public ArrayList listarAluno(){
-        ArrayList<Model.Aluno> Aluno = new ArrayList();
+        ArrayList<model.Aluno> Aluno = new ArrayList();
         try{
            Connection conexao = ConnectionFactory.createConnection();
            String sql = "SELECT * FROM sistemaaluno.aluno;";
             PreparedStatement comando = conexao.prepareStatement(sql);
             ResultSet resultado = comando.executeQuery();
             while(resultado.next()){
-                Model.Aluno aluno_banco = new Model.Aluno();
+                model.Aluno aluno_banco = new model.Aluno();
                 aluno_banco.setMat(resultado.getInt("matricula_aluno"));
                 aluno_banco.setNome(resultado.getString("nome_aluno"));
                 aluno_banco.setAv1(resultado.getDouble("av1_aluno"));

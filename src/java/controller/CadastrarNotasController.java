@@ -1,33 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
-package Controller;
-
+import dao.AlunoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.AlunoDAO;
 
+/**
+ *
+ * @author RMC
+ */
+public class CadastrarNotasController extends HttpServlet {
 
-public class AtualizarNomeController extends HttpServlet {
-
-   
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             int mat = Integer.parseInt(request.getParameter("matricula"));
-            String nome = request.getParameter("nome").toString();
+            double av1 = Double.parseDouble(request.getParameter("av1"));
+            double av2 = Double.parseDouble(request.getParameter("av2"));
             AlunoDAO aluno = new AlunoDAO();
-            aluno.updateAluno(mat, nome);
-            response.sendRedirect("/sistemaalunos/confirmacao.html");
+            aluno.updateAluno(mat, av1, av2);
+            //response.sendRedirect("/sistemaalunos/confirmacao.html");
+            enviarTexto(response , "OK");
         }catch(Exception e){
             e.printStackTrace();
         }finally{
             out.close();
         }
+    }
+    
+    private void enviarTexto(HttpServletResponse response, String texto) throws IOException {
+        PrintWriter out = response.getWriter();
+        out.print(texto);
+        out.close();
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
