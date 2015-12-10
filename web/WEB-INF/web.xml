@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
         <filter-name>Principal</filter-name>
-        <filter-class>Filter.MainFilter</filter-class>
+        <filter-class>filter.MainFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>Principal</filter-name>
@@ -10,11 +10,11 @@
     </filter-mapping>
     <servlet>
         <servlet-name>CadastrarController</servlet-name>
-        <servlet-class>Controller.CadastrarController</servlet-class>
+        <servlet-class>controller.CadastrarController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListarController</servlet-name>
-        <servlet-class>Controller.ListarController</servlet-class>
+        <servlet-class>controller.ListarController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListarView</servlet-name>
@@ -22,35 +22,35 @@
     </servlet>
     <servlet>
         <servlet-name>CalculaController</servlet-name>
-        <servlet-class>Controller.CalculaController</servlet-class>
+        <servlet-class>controller.CalculaController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeletarController</servlet-name>
-        <servlet-class>Controller.DeletarController</servlet-class>
+        <servlet-class>controller.DeletarController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AtualizarController</servlet-name>
-        <servlet-class>Controller.AtualizarController</servlet-class>
+        <servlet-class>controller.AtualizarController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CadastrarNotasController</servlet-name>
-        <servlet-class>Controller.CadastrarNotasController</servlet-class>
+        <servlet-class>controller.CadastrarNotasController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AtualizarNomeController</servlet-name>
-        <servlet-class>Controller.AtualizarNomeController</servlet-class>
+        <servlet-class>controller.AtualizarNomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletErro</servlet-name>
-        <servlet-class>Controller.ServletErro</servlet-class>
+        <servlet-class>controller.ServletErro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controller.LoginController</servlet-class>
+        <servlet-class>controller.LoginController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>Controller.LogoutController</servlet-class>
+        <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CadastrarController</servlet-name>

@@ -1,4 +1,9 @@
-package Controller;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,12 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Model.Aluno;
-import DAO.AlunoDAO;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 
-public class ListarController extends HttpServlet {
+/**
+ *
+ * @author RMC
+ */
+public class ServletErro extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,18 +30,17 @@ public class ListarController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            AlunoDAO dao = new AlunoDAO();
-            ArrayList<Aluno> alunos = new ArrayList();
-            alunos = dao.listarAluno();
-            request.setAttribute("alunos", alunos);
-            RequestDispatcher rd = request.getRequestDispatcher("/ListarView");
-            rd.forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            out.close();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletErro</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ServletErro at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -52,7 +56,7 @@ public class ListarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request,response);
     }
 
     /**
